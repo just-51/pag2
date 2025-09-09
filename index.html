@@ -16,7 +16,7 @@
     justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    padding: 80px 20px 20px; /* 顶部增加内边距，下移标题和播放器 */
+    padding: 80px 20px 20px;
   }
   .content-wrapper {
     display: flex;
@@ -130,6 +130,8 @@ function loadVideo(url,resumeTime,isM3U8){
   video.load();
   if(hls){ hls.destroy(); hls=null; }
 
+  video.poster="loading.jpg";
+
   if(isM3U8 && !isIOS() && typeof Hls!=='undefined'){
     hls = new Hls({ maxBufferLength:30, maxMaxBufferLength:60 });
     hls.loadSource(url);
@@ -139,11 +141,11 @@ function loadVideo(url,resumeTime,isM3U8){
       video.play().catch(()=>{});
       hideLoading();
     });
-  }else{
+  } else {
     video.src=url;
-    video.addEventListener('loadedmetadata',function onLoaded(){
-      video.removeEventListener('loadedmetadata',onLoaded);
-      video.currentTime=resumeTime;
+    video.addEventListener('loadedmetadata', function onLoaded(){
+      video.removeEventListener('loadedmetadata', onLoaded);
+      video.currentTime = resumeTime;
       video.play().catch(()=>{});
       hideLoading();
     });
@@ -167,7 +169,7 @@ function loadVideoFromEncoded(encStr){
 // 初始化第一个视频
 loadVideoFromEncoded(buttons[0].dataset.enc.trim());
 
-// 切换按钮
+// 按钮切换
 buttons.forEach(btn=>{
   btn.addEventListener('click',()=> loadVideoFromEncoded(btn.dataset.enc.trim()));
 });
