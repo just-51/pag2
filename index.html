@@ -38,15 +38,14 @@
   const videos = [
     "aHR0cHM6Ly92MjAyNS5maGJiZmYuY29tLzIwMjUwOTA3L2drOHVWRGMvaW5kZXgubTN1OA==", // 视频1
     "aHR0cHM6Ly92MjAyNS5maGJiZmYuY29tLzIwMjUwNjI5L2hBN2l0blVkL2luZGV4Lm0zdTg=", // 视频2
-    "aHR0cHM6Ly92MjAyNC5maGJiZmYuY29tLzIwMjQxMTE5L2dvbGp6a2lNL2luZGV4Lm0zdTg3", // 视频3
+    "aHR0cHM6Ly92MjAyNC5maGJiZmYuY29tLzIwMjQxMTE5L2dvbGp6a2lNL2luZGV4Lm0zdTg3=", // 视频3 (补上等号)
     "aHR0cHM6Ly92MjAyNS5maGJiZmYuY29tLzIwMjUwOTA3L2drOHVWRGNaL2luZGV4Lm0zdTg=", // 视频4
-    "aHR0cHM6Ly92MjAyNS5maGJiZmYuY29tLzIwMjUwOTA3L2drOHVWRGMvaW5kZXgubTN1OA==
-", // 视频5
-    "BASE64_VIDEO_6"  // 视频6
+    "aHR0cHM6Ly92MjAyNS5maGJiZmYuY29tLzIwMjUwOTA3L2drOHVWRGMvaW5kZXgubTN1OA==", // 视频5 (修复换行)
+    "BASE64_VIDEO_6"  // 视频6 (自己替换)
   ];
 
   videos.forEach((base64Url, index) => {
-    const url = atob(base64Url); // 解码 Base64
+    const url = atob(base64Url.trim()); // 解码 Base64
     const video = document.getElementById(`video${index}`);
     const storageKey = `video_last_time_${index}`; // 每个视频独立存储
 
